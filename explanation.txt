@@ -1,3 +1,5 @@
+https://www.npmjs.com/
+
 =========================
 Server Basics (Simple Notes)
 =========================
@@ -313,3 +315,325 @@ app.get("/about", (req, res) => {
 app.listen(3000, () => {
     console.log("Server is running on port 3000")
 })
+
+==========================================================================================================================================================================================================================================================
+
+=========================
+API and REST API
+=========================
+
+1. What is an API?
+------------------
+
+API stands for **Application Programming Interface**.
+
+An API is a way for two different software applications to communicate with each other.
+
+Instead of accessing another application's code or database directly, one application sends a request to the API, and the API returns the required data or performs the requested task.
+
+Think of an API like a waiter in a restaurant.
+
+- You (Client) place an order.
+- The waiter (API) takes your order to the kitchen (Server).
+- The kitchen prepares the food.
+- The waiter brings the food back to you.
+
+You never go into the kitchen yourself.
+
+Example:
+- Weather apps use a Weather API to get weather information.
+- Payment apps use APIs to process online payments.
+- Frontend applications use backend APIs to fetch or save data.
+
+------------------------------------------------------------
+
+2. What is a REST API?
+----------------------
+
+REST stands for **Representational State Transfer**.
+
+A REST API is a type of API that follows a set of rules for communication over the internet using HTTP.
+
+It allows clients (websites, mobile apps, etc.) to communicate with a backend server to perform operations like:
+
+- Fetch data
+- Add new data
+- Update existing data
+- Delete data
+
+REST APIs are the most commonly used APIs in modern web development.
+
+------------------------------------------------------------
+
+3. HTTP Request Methods
+-----------------------
+
+### GET
+
+Used to fetch or read data from the server.
+
+Example:
+
+GET /users
+
+Returns the list of users.
+
+------------------------------------------------------------
+
+### POST
+
+Used to send new data to the server.
+
+Example:
+
+POST /users
+
+Creates a new user.
+
+------------------------------------------------------------
+
+### PATCH
+
+Used to update some part of existing data on the server.
+
+Example:
+
+PATCH /users/1
+
+Updates specific information of user with ID 1.
+
+------------------------------------------------------------
+
+### DELETE
+
+Used to remove existing data from the server.
+
+Example:
+
+DELETE /users/1
+
+Deletes user with ID 1.
+
+------------------------------------------------------------
+
+4. Project Structure
+--------------------
+
+A common Express project structure is:
+
+project/
+│
+├── src/
+│   │
+│   └── app.js
+│
+├── server.js
+│
+├── package.json
+│
+└── node_modules/
+
+Explanation:
+
+**app.js**
+- Creates the Express application.
+- Defines routes.
+- Contains middleware and other application logic.
+
+**server.js**
+- Imports the Express application from `app.js`.
+- Starts the server using `app.listen()`.
+
+This structure keeps the project clean and organized.
+
+------------------------------------------------------------
+
+5. app.listen()
+---------------
+
+Syntax:
+
+app.listen(port, () => {
+    console.log("Server is running")
+})
+
+Explanation:
+
+`app.listen()` starts the Express server.
+
+It takes two arguments:
+
+1. **Port Number**
+   - The port on which the server listens for incoming requests.
+
+2. **Callback Function**
+   - Runs after the server starts successfully.
+   - Usually used to display a success message.
+
+Example:
+
+app.listen(3000, () => {
+    console.log("Server is running on port 3000")
+})
+
+------------------------------------------------------------
+
+6. DELETE Route
+---------------
+
+Example:
+
+app.delete("/notes/:index", (req, res) => {
+
+})
+
+Explanation:
+
+- `app.delete()` handles DELETE requests.
+- `/notes` is the route.
+- `:index` is a **Route Parameter (Parameter or Params)**.
+
+The colon (`:`) tells Express that this part of the URL is **dynamic**.
+
+For example:
+
+DELETE /notes/0
+
+DELETE /notes/2
+
+DELETE /notes/10
+
+Here, only `/notes` stays the same, while the value after it changes.
+
+------------------------------------------------------------
+
+7. Route Parameters (Params)
+----------------------------
+
+A route parameter is a dynamic value in the URL.
+
+Example:
+
+app.get("/users/:id", (req, res) => {
+
+})
+
+Possible URLs:
+
+/users/1
+
+/users/25
+
+/users/100
+
+Here:
+
+- `/users` is the static part.
+- `:id` is the dynamic part (parameter).
+
+Express automatically stores this value inside:
+
+req.params
+
+------------------------------------------------------------
+
+8. req.params.index
+-------------------
+
+Example:
+
+app.delete("/notes/:index", (req, res) => {
+
+    console.log(req.params.index)
+
+})
+
+If the user sends:
+
+DELETE /notes/3
+
+Then:
+
+req.params.index
+
+contains:
+
+"3"
+
+Notice that route parameters are received as **strings**.
+
+If you need to perform calculations or use them as array indexes, convert them to a number.
+
+Example:
+
+const index = Number(req.params.index)
+
+------------------------------------------------------------
+
+9. Why is Index Used?
+---------------------
+
+Suppose we have an array:
+
+const notes = [
+    "Study",
+    "Practice",
+    "Exercise"
+]
+
+Indexes are:
+
+0 → Study
+
+1 → Practice
+
+2 → Exercise
+
+If the request is:
+
+DELETE /notes/1
+
+Then:
+
+req.params.index
+
+is:
+
+"1"
+
+After converting it to a number, we can delete the second item from the array.
+
+------------------------------------------------------------
+
+10. nodemon
+-----------
+
+Command:
+
+npx nodemon server.js
+
+Explanation:
+
+Normally, whenever you change your code, you have to stop the server and start it again manually.
+
+`nodemon` automatically watches your project files.
+
+Whenever it detects a change, it restarts the server automatically.
+
+Benefits:
+- Saves time.
+- No need to restart the server manually after every code change.
+- Makes development faster and more convenient.
+
+
+
+
+
+
+
+
+
+
+
+
+
