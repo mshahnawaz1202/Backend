@@ -1,0 +1,103 @@
+=========================
+Server Basics (Simple Notes)
+=========================
+
+1. What is a Server?
+--------------------
+A server is simply a computer.
+
+Like our laptop or desktop, it has:
+- Operating System (OS)
+- Processor (CPU)
+- RAM
+- Storage
+
+The main job of a server is to receive requests from users and send back the correct response.
+
+Example:
+When you open google.com, your browser sends a request to Google's server.
+The server processes your request and sends the webpage back to your browser.
+
+------------------------------------------------------------
+
+2. How is a Server Different from Our Laptop or PC?
+------------------------------------------------------------
+
+A server and a laptop are almost the same in terms of hardware.
+
+The difference is in how they are used.
+
+Laptop/PC:
+- Used by one person.
+- Runs applications like Chrome, VS Code, games, etc.
+- We can shut it down whenever we want.
+
+Server:
+- Programmed to provide services to many users.
+- Usually runs all the time (24/7).
+- Waits for users' requests.
+- Processes those requests and sends responses.
+
+In simple words:
+
+A server is just a computer that has been programmed to handle requests from users over a network.
+
+------------------------------------------------------------
+
+3. How Do We Program a Server?
+------------------------------------------------------------
+
+To make a computer work as a server, we write server-side code.
+
+In this course, we use JavaScript with Node.js.
+
+The basic steps are:
+
+1. Install Node.js.
+2. Write JavaScript code.
+3. Run the code.
+4. The server starts and waits for requests.
+5. When a user sends a request, the server processes it.
+6. The server sends a response back to the user.
+
+------------------------------------------------------------
+
+4. package.json
+------------------------------------------------------------
+
+package.json is an important file in every Node.js project.
+
+It contains information about the project, such as:
+- Project name
+- Version
+- Scripts
+- Packages (dependencies) used in the project
+
+Whenever someone downloads your project, npm reads this file and knows which packages need to be installed.
+( tell the code we have written using which packages/dependencies)
+
+------------------------------------------------------------
+
+5. package-lock.json
+------------------------------------------------------------
+
+package-lock.json is created automatically by npm.
+
+It stores:
+- The exact version of every installed package.
+- Which package depends on another package.
+
+Think of it like a family tree of packages.
+
+Example:
+
+express
+│
+├── body-parser
+│   └── bytes
+│
+├── cookie
+└── send
+
+This file ensures that everyone who installs the project gets the same versions of all packages, avoiding unexpected errors.
+(it maintains that package we are using is depend on which packages and that depends on which packages like tree )
