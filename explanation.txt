@@ -101,3 +101,215 @@ express
 
 This file ensures that everyone who installs the project gets the same versions of all packages, avoiding unexpected errors.
 (it maintains that package we are using is depend on which packages and that depends on which packages like tree )
+
+==========================================================================================================================================
+=========================
+Creating a Server Using Express.js
+=========================
+
+1. Initialize a Node.js Project
+--------------------------------
+
+Command:
+
+npm init -y
+
+Explanation:
+
+- `npm init` creates a new Node.js project.
+- It generates a file called `package.json`.
+- The `-y` option automatically accepts all the default settings, so you don't have to answer any questions.
+
+------------------------------------------------------------
+
+2. Install Express
+------------------
+
+Command:
+
+npm i express
+
+Explanation:
+
+- `npm` = Node Package Manager.
+- `i` = install.
+- `express` is a popular Node.js framework used to build web servers and APIs easily.
+
+After installation:
+- A `node_modules` folder is created.
+- `express` is added to `package.json` as a dependency.
+- `package-lock.json` is also created or updated.
+
+------------------------------------------------------------
+
+3. Import Express
+-----------------
+
+Code:
+
+const express = require('express')
+
+Explanation:
+
+- `require('express')` imports the Express package.
+- The imported function is stored in the variable `express`.
+- Now we can use all the features provided by Express.
+
+------------------------------------------------------------
+
+4. Create an Express Application
+--------------------------------
+
+Code:
+
+const app = express()
+
+Explanation:
+
+- `express()` creates an Express application.
+- We store it inside the variable `app`.
+- The `app` object is used to:
+  - Create routes
+  - Receive requests
+  - Send responses
+  - Start the server
+
+------------------------------------------------------------
+
+5. Create Routes
+----------------
+
+Code:
+
+app.get("/", (req, res) => {
+    res.send("Hello from Backend!")
+})
+
+Explanation:
+
+- `app.get()` is used to handle GET requests.
+- The first argument (`"/"`) is the route or URL path.
+- `req` (Request) contains information sent by the client.
+- `res` (Response) is used to send data back to the client.
+- `res.send()` sends the response to the browser.
+
+When the user visits:
+
+http://localhost:3000/
+
+The browser displays:
+
+Hello from Backend!
+
+------------------------------------------------------------
+
+6. Another Route
+----------------
+
+Code:
+
+app.get("/about", (req, res) => {
+    res.send("Hello from Backend!\nAbout Page")
+})
+
+Explanation:
+
+This route handles requests for:
+
+http://localhost:3000/about
+
+The server responds with:
+
+Hello from Backend!
+About Page
+
+Each route can return different data depending on the URL.
+
+------------------------------------------------------------
+
+7. Start the Server
+-------------------
+
+Code:
+
+app.listen(3000)
+
+Explanation:
+
+`app.listen()` starts the server.
+
+The number `3000` is the port number on which the server listens for incoming requests.
+
+Now the server is available at:
+
+http://localhost:3000
+
+------------------------------------------------------------
+
+8. app.listen() with Callback
+-----------------------------
+
+Code:
+
+app.listen(3000, () => {
+    console.log("Server is running on port 3000");
+})
+
+Explanation:
+
+The callback function runs after the server starts successfully.
+
+Output in terminal:
+
+Server is running on port 3000
+
+This message helps confirm that the server is running.
+
+------------------------------------------------------------
+
+9. What is a Port Number?
+-------------------------
+
+A port is a communication endpoint used by applications on a computer.
+
+A computer can run many applications at the same time.
+Each application uses a different port number so the operating system knows where to send incoming requests.
+
+Examples:
+
+Chrome           → Uses port 443 (HTTPS)
+Node.js Server   → Port 3000
+MySQL            → Port 3306
+MongoDB          → Port 27017
+
+In development, port **3000** is commonly used for Express applications.
+
+When you open:
+
+http://localhost:3000
+
+- `localhost` means your own computer.
+- `3000` tells the browser which application (server) to connect to.
+
+Without a port number, the browser would not know which application should handle the request.
+
+------------------------------------------------------------
+
+Complete Code
+-------------
+
+const express = require('express')
+
+const app = express()
+
+app.get("/", (req, res) => {
+    res.send("Hello from Backend!")
+})
+
+app.get("/about", (req, res) => {
+    res.send("Hello from Backend!\nAbout Page")
+})
+
+app.listen(3000, () => {
+    console.log("Server is running on port 3000")
+})
