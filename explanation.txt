@@ -626,6 +626,589 @@ Benefits:
 - Makes development faster and more convenient.
 
 
+=========================================================================================================================================================================================
+=========================
+MongoDB with Express & Mongoose
+=========================
+
+------------------------------------------------------------
+1. What is MongoDB?
+------------------------------------------------------------
+
+MongoDB is a NoSQL database used to store data.
+
+Unlike SQL databases, MongoDB stores data in the form of **documents** instead of rows and columns.
+
+A document looks like a JavaScript object (JSON).
+
+Example:
+
+{
+    "title": "Learn Node.js",
+    "description": "Complete Express tutorial"
+}
+
+A group of documents is called a **Collection**.
+
+A group of collections is called a **Database**.
+
+------------------------------------------------------------
+
+2. What is MongoDB Atlas?
+------------------------------------------------------------
+
+MongoDB Atlas is the cloud version of MongoDB.
+
+Instead of installing MongoDB on your own computer, MongoDB Atlas stores your database online.
+
+Advantages:
+- Accessible from anywhere.
+- Automatic backups.
+- Easy to connect with applications.
+- No need to install MongoDB locally.
+
+------------------------------------------------------------
+
+3. What is a MongoDB Cluster?
+------------------------------------------------------------
+
+A **Cluster** is a group of servers that stores your databases.
+
+Think of it like a large storage system that contains one or more databases.
+
+Structure:
+
+Cluster
+│
+├── Database 1
+│      ├── Collection
+│      └── Collection
+│
+├── Database 2
+│      ├── Collection
+│      └── Collection
+
+When you create a free cluster on MongoDB Atlas, all your databases are stored inside that cluster.
+
+------------------------------------------------------------
+
+4. What is MongoDB Compass?
+------------------------------------------------------------
+
+MongoDB Compass is the official graphical interface (GUI) for MongoDB.
+
+It allows you to:
+- View databases.
+- View collections.
+- Add documents.
+- Edit documents.
+- Delete documents.
+- Run queries.
+
+It is similar to phpMyAdmin for MySQL.
+
+------------------------------------------------------------
+
+5. Install Mongoose
+------------------------------------------------------------
+
+Command:
+
+npm i mongoose
+
+Explanation:
+
+Mongoose is a Node.js library that helps us communicate with MongoDB.
+
+Instead of writing MongoDB queries directly, Mongoose provides an easier way to:
+
+- Connect to MongoDB.
+- Create schemas.
+- Create models.
+- Insert data.
+- Update data.
+- Delete data.
+- Fetch data.
+
+------------------------------------------------------------
+
+6. Project Structure
+------------------------------------------------------------
+
+project/
+│
+├── node_modules/
+│
+├── src/
+│   │
+│   ├── db/
+│   │     └── db.js
+│   │
+│   ├── models/
+│   │     └── notes.models.js
+│   │
+│   └── app.js
+│
+├── package.json
+├── package-lock.json
+└── server.js
+
+Explanation:
+
+db.js
+- Connects the application to MongoDB.
+
+models/
+- Contains database models.
+
+app.js
+- Contains all routes and application logic.
+
+server.js
+- Starts the server and connects to the database.
+
+------------------------------------------------------------
+
+7. Creating a Schema
+------------------------------------------------------------
+
+Code:
+
+const mongoose = require("mongoose")
+
+const noteSchema = new mongoose.Schema({
+    title: String,
+    description: String
+})
+
+Explanation:
+
+A Schema defines the structure of a document.
+
+Here every Note document will have:
+
+title
+→ String
+
+description
+→ String
+
+Example document:
+
+{
+    "title": "Shopping",
+    "description": "Buy Milk"
+}
+
+------------------------------------------------------------
+
+8. Creating a Model
+------------------------------------------------------------
+
+Code:
+
+const noteModel = mongoose.model("notes", noteSchema)
+
+module.exports = noteModel
+
+Explanation:
+
+A Model is created using a schema.
+
+A model is used to interact with a MongoDB collection.
+
+Syntax:
+
+mongoose.model(
+    CollectionName,
+    Schema
+)
+
+Here:
+
+Collection Name:
+notes
+
+Schema:
+noteSchema
+
+Using this model we can:
+
+- Create documents.
+- Read documents.
+- Update documents.
+- Delete documents.
+
+------------------------------------------------------------
+
+9. Connecting to MongoDB
+------------------------------------------------------------
+
+Code:
+
+const mongoose = require("mongoose")
+
+async function connectDB() {
+
+    await mongoose.connect(
+        "mongodb+srv://username:password@cluster.mongodb.net/notesdb"
+    )
+
+    console.log("Connected To DB")
+
+}
+
+module.exports = connectDB
+
+Explanation:
+
+mongoose.connect() connects our application to MongoDB Atlas.
+
+Connection String:
+
+mongodb+srv://username:password@cluster.mongodb.net/notesdb
+
+The last part:
+
+notesdb
+
+is the database name.
+
+If the database does not exist, MongoDB automatically creates it when data is inserted.
+
+------------------------------------------------------------
+
+10. server.js
+------------------------------------------------------------
+
+Code:
+
+const app = require("./src/app")
+const connectDB = require("./src/db/db")
+
+connectDB()
+
+const port = 3000
+
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`)
+})
+
+Explanation:
+
+Step 1:
+Import the Express application.
+
+Step 2:
+Import the database connection function.
+
+Step 3:
+Connect to MongoDB.
+
+Step 4:
+Start the Express server.
+
+------------------------------------------------------------
+
+11. express.json()
+------------------------------------------------------------
+
+Code:
+
+app.use(express.json())
+
+Explanation:
+
+This middleware converts incoming JSON data into a JavaScript object.
+
+Without it,
+
+req.body
+
+will be undefined.
+
+Example request:
+
+{
+    "title":"Node",
+    "description":"Learning Express"
+}
+
+After express.json(),
+
+req.body becomes:
+
+{
+    title:"Node",
+    description:"Learning Express"
+}
+
+------------------------------------------------------------
+
+12. Creating a Note (POST)
+------------------------------------------------------------
+
+Code:
+
+app.post("/notes", async (req,res)=>{
+
+    const data = req.body
+
+    await noteModel.create({
+        title:data.title,
+        description:data.description
+    })
+
+    res.status(201).json({
+        message:"Note Created Successfully"
+    })
+
+})
+
+Explanation:
+
+POST is used to add new data.
+
+req.body contains the data sent by the client.
+
+create() inserts a new document into MongoDB.
+
+Example Request:
+
+POST /notes
+
+Body:
+
+{
+    "title":"Node",
+    "description":"Learn Express"
+}
+
+A new document is stored in MongoDB.
+
+------------------------------------------------------------
+
+13. Reading Notes (GET)
+------------------------------------------------------------
+
+Code:
+
+const notes = await noteModel.find()
+
+Explanation:
+
+find()
+
+returns every document from the collection.
+
+Return Type:
+
+[]
+
+or
+
+[
+   {},
+   {},
+   {}
+]
+
+find() always returns an array.
+
+Example Response:
+
+[
+   {
+      title:"Node",
+      description:"Learn Express"
+   },
+   {
+      title:"MongoDB",
+      description:"Practice CRUD"
+   }
+]
+
+------------------------------------------------------------
+
+14. findOne()
+------------------------------------------------------------
+
+Code:
+
+const note = await noteModel.findOne({
+    title:"Node"
+})
+
+Explanation:
+
+findOne() returns only the first matching document.
+
+Return value:
+
+{}
+
+or
+
+null
+
+Unlike find(), it never returns an array.
+
+------------------------------------------------------------
+
+15. Deleting a Note
+------------------------------------------------------------
+
+Code:
+
+app.delete("/notes/:id", async(req,res)=>{
+
+    const id = req.params.id
+
+    await noteModel.findOneAndDelete({
+        _id:id
+    })
+
+})
+
+Explanation:
+
+:id is a dynamic route parameter.
+
+Example:
+
+DELETE /notes/687ac8d8b12934f56789abc
+
+The id is stored inside:
+
+req.params.id
+
+findOneAndDelete() finds the document having that _id and deletes it.
+
+------------------------------------------------------------
+
+16. Updating a Note
+------------------------------------------------------------
+
+Code:
+
+app.patch("/notes/:id", async(req,res)=>{
+
+    const id = req.params.id
+
+    const description = req.body.description
+
+    await noteModel.findOneAndUpdate(
+        {
+            _id:id
+        },
+        {
+            description:description
+        }
+    )
+
+})
+
+Explanation:
+
+PATCH updates existing data.
+
+Example Request:
+
+PATCH /notes/687ac8d8b12934f56789abc
+
+Body:
+
+{
+    "description":"Complete MongoDB Course"
+}
+
+findOneAndUpdate()
+
+First argument:
+Which document should be updated.
+
+Second argument:
+What changes should be made.
+
+Only the description field is updated.
+
+------------------------------------------------------------
+
+17. Common Mongoose CRUD Methods
+------------------------------------------------------------
+
+Create
+
+create()
+
+Adds a new document.
+
+------------------------
+
+Read
+
+find()
+
+Returns all matching documents.
+
+Return:
+Array
+
+------------------------
+
+Read One
+
+findOne()
+
+Returns only one matching document.
+
+Return:
+Object or null
+
+------------------------
+
+Update
+
+findOneAndUpdate()
+
+Updates one matching document.
+
+------------------------
+
+Delete
+
+findOneAndDelete()
+
+Deletes one matching document.
+
+------------------------------------------------------------
+
+18. Request Flow
+------------------------------------------------------------
+
+Client (Postman / Browser)
+        │
+        │ HTTP Request
+        ▼
+Express Route (app.js)
+        │
+        │
+        ▼
+Mongoose Model
+        │
+        │
+        ▼
+MongoDB Atlas Database
+        │
+        │
+        ▼
+Data Returned
+        │
+        ▼
+Express sends JSON Response
+        │
+        ▼
+Client Receives Response
 
 
 
