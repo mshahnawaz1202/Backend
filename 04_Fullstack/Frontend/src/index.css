@@ -1,12 +1,129 @@
-*{
-  margin:0%;
+* {
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 html,
 body,
-#root{
-  height: 100%;
+#root {
   width: 100%;
+  min-height: 100vh;
+}
+
+.creaet-post-section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0b0b0b, #1a1a1a);
+  padding: 20px;
+}
+
+.creaet-post-section form {
+  width: 420px;
+  background: rgba(28, 28, 28, 0.95);
+  border: 1px solid #2f2f2f;
+  border-radius: 18px;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(10px);
+}
+
+.creaet-post-section h1 {
+  text-align: center;
+  color: #f5f5f5;
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.creaet-post-section input,
+.creaet-post-section textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: #252525;
+  color: #ffffff;
+  border: 1px solid #3d3d3d;
+  border-radius: 10px;
+  outline: none;
+  font-size: 15px;
+  transition: 0.3s ease;
+}
+
+.creaet-post-section textarea {
+  resize: none;
+  height: 120px;
+}
+
+.creaet-post-section input::placeholder,
+.creaet-post-section textarea::placeholder {
+  color: #9a9a9a;
+}
+
+.creaet-post-section input:focus,
+.creaet-post-section textarea:focus {
+  border-color: #c9a227;
+  box-shadow: 0 0 12px rgba(201, 162, 39, 0.35);
+}
+
+.creaet-post-section input[type="file"] {
+  padding: 10px;
+  color: #d6d6d6;
+  cursor: pointer;
+}
+
+.creaet-post-section input[type="file"]::-webkit-file-upload-button {
+  background: #c9a227;
+  color: #111;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-right: 12px;
+  transition: 0.3s;
+}
+
+.creaet-post-section input[type="file"]::-webkit-file-upload-button:hover {
+  background: #e0b93b;
+}
+
+.creaet-post-section button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #c9a227, #e0b93b);
+  color: #111;
+  border: none;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.creaet-post-section button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(201, 162, 39, 0.4);
+}
+
+.creaet-post-section button:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 500px) {
+  .creaet-post-section form {
+    width: 100%;
+    padding: 25px;
+  }
+
+  .creaet-post-section h1 {
+    font-size: 24px;
+  }
 }
