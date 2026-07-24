@@ -1897,3 +1897,57 @@ In Simple Words
 
 CORS is a security mechanism that tells the browser **which websites are allowed to communicate with your backend server**.
 
+
+
+=========================
+Axios
+=========================
+
+Install:
+
+npm i axios
+
+What is Axios?
+
+Axios is a JavaScript library used to send HTTP requests to a backend server or API.
+
+It is commonly used to:
+- Fetch data (GET)
+- Send data (POST)
+- Update data (PATCH/PUT)
+- Delete data (DELETE)
+
+Example:
+
+axios.get("/posts")
+
+This sends a GET request to fetch all posts.
+
+------------------------------------------------------------
+
+=========================
+useNavigate
+=========================
+
+What is useNavigate?
+
+`useNavigate` is a React Router hook used to navigate from one page to another programmatically.
+
+It is useful when navigation should happen after an action, such as:
+- Login
+- Form submission
+- Logout
+
+Example:
+
+const navigate = useNavigate()
+
+navigate("/home")
+
+This redirects the user to the **Home** page.
+
+
+
+
+
+
