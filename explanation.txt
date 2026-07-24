@@ -1787,10 +1787,113 @@ JSON Response Sent to Client
 
 
 
+========================================================================================================================================================================================
 
+Frontend and Backend Integration
 
+=========================
+CORS (Cross-Origin Resource Sharing)
+=========================
 
+What is CORS?
+-------------
 
+CORS stands for **Cross-Origin Resource Sharing**.
 
+It is a security feature used by web browsers.
 
+CORS controls **which websites are allowed to access your backend server**.
+
+------------------------------------------------------------
+
+Simple Example
+--------------
+
+Suppose your frontend is running on:
+
+http://localhost:5173
+
+Your backend is running on:
+
+http://localhost:3000
+
+Now the frontend tries to fetch data:
+
+GET http://localhost:3000/posts
+
+The browser asks:
+
+"Is this website allowed to access that server?"
+
+If the server does **not** allow it, the browser blocks the request.
+
+This is called a **CORS Error**.
+
+------------------------------------------------------------
+
+Why is CORS Needed?
+-------------------
+
+Imagine anyone on the internet could send requests to your server without restrictions.
+
+That would be a security risk.
+
+CORS helps protect users by allowing the server to decide which websites can access it.
+
+------------------------------------------------------------
+
+How Do We Enable CORS?
+----------------------
+
+Install CORS package:
+
+npm i cors
+
+Import it:
+
+const cors = require("cors")
+
+Use it as middleware:
+
+app.use(cors())
+
+Now your backend allows requests from other origins.
+
+------------------------------------------------------------
+
+Allow Only a Specific Frontend
+------------------------------
+
+Instead of allowing everyone:
+
+app.use(cors({
+    origin: "http://localhost:5173"
+}))
+
+Now only the frontend running on port **5173** can access your backend.
+
+------------------------------------------------------------
+
+Flow
+----
+
+Frontend (localhost:5173)
+          │
+          │ Request
+          ▼
+Browser checks CORS
+          │
+          ▼
+Backend (localhost:3000)
+          │
+          ├── CORS Allowed ✅ → Response Sent
+          │
+          └── CORS Not Allowed ❌ → Browser Blocks Request
+
+------------------------------------------------------------
+
+In Simple Words
+---------------
+
+CORS is a security mechanism that tells the browser **which websites are allowed to communicate with your backend server**.
 
