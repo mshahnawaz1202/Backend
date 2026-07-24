@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
+import axios from 'axios'
 
 
 
 function Feed() {
-    const [posts] = useState([
+    const [posts,setPosts] = useState([
         {
             _id: 1,
             image:
@@ -17,6 +18,14 @@ function Feed() {
             caption: "Another Awesome Photo",
         },
     ]);
+    useEffect(()=> {
+        axios.get("http://localhost:3000/posts")
+        .then((res)=>{
+            console.log(res.data);
+            setPosts(res.data.posts)
+            
+        })
+    },[])
 
     return (
         <section className="feed-section">
