@@ -2254,7 +2254,35 @@ Example:
 
 ========================================================================================================================================================
 
+---------------------------------------
+      Disadvantages of Tokens
+---------------------------------------
 
+1. Cannot Be Revoked Easily
+---------------------------
+Once a JWT is issued, it remains valid until it expires unless you maintain a blacklist.
+
+2. Token Theft
+--------------
+If an attacker steals the token, they can access the user's account until the token expires.
+
+3. Token Size
+-------------
+JWTs are larger than session IDs because they contain user data, increasing request size slightly.
+
+4. Expiration Handling
+----------------------
+If the token expires, the user must log in again or use a refresh token to get a new one.
+
+5. Secure Storage Required
+--------------------------
+Tokens should be stored securely (e.g., in HttpOnly cookies) to reduce the risk of theft.
+
+---------------------------------------
+Summary
+---------------------------------------
+
+JWT tokens are fast and stateless, but they must be stored securely, have an expiration time, and can be misused if stolen.
 
 
 
