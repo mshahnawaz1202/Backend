@@ -18,6 +18,13 @@ async function register(req, res) {
         user,
     })
 
+    /** Problem in above code  is that user can make multiple accounts with same username and email which is not good 
+     * so first we do changes in model and add unique in email
+    */
+
+
+
+
 }
 
 
