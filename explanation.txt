@@ -2225,6 +2225,34 @@ On future requests, the browser automatically sends this cookie to the server.
 ======================================================================================================================================================================
 
 
+---------------------------------------
+        Why Tokens are Used?
+---------------------------------------
+
+Tokens are used to identify and authenticate a user after they log in.
+
+Instead of asking the user to enter their email and password on every request,
+the server gives the user a token after a successful login.
+
+The user sends this token with every request, and the server verifies it.
+
+Benefits:
+---------
+- Keeps the user logged in.
+- Improves security.
+- No need to send email and password repeatedly.
+- Helps the server identify the authenticated user.
+
+Example:
+--------
+1. User logs in.
+2. Server creates a JWT token.
+3. User stores the token (usually in a cookie or local storage).
+4. User sends the token with every request.
+5. Server verifies the token and allows access.
+
+
+========================================================================================================================================================
 
 
 
