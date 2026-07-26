@@ -2209,6 +2209,7 @@ Why Use Cookies?
 - Makes authentication easier.
 
 ---------------------------------------
+npm i cookie-parser => middleware
 
 Example
 -------
