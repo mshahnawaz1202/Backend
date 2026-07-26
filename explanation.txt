@@ -2118,4 +2118,123 @@ In Simple Words
 
 Token-Based Authentication means **the server gives the user a unique token after login, and the user uses that token to prove their identity whenever they make future requests.**
 
+===============================================================================================================================================================================================
+
+JWT (JSON Web Token)
+====================
+
+1. Install Package
+------------------
+npm i jsonwebtoken
+
+Installs the JWT library to create and verify tokens.
+
+--------------------------------------------------
+
+2. Import JWT
+-------------
+const jwt = require('jsonwebtoken')
+
+Imports the JWT package into your project.
+
+--------------------------------------------------
+
+3. Create a Secret Key
+----------------------
+Generate a secret key from:
+https://jwtsecrets.com/
+
+Store it in the `.env` file:
+
+JWT_SECRET=your_secret_key
+
+This secret key is used to sign and verify JWT tokens.
+
+--------------------------------------------------
+
+4. Create a Token
+-----------------
+const token = jwt.sign(
+    { id: user._id },
+    process.env.JWT_SECRET
+);
+
+Explanation:
+- `jwt.sign()` → Creates a JWT token.
+- `{ id: user._id }` → Payload (stores the user's ID).
+- `process.env.JWT_SECRET` → Secret key used to sign the token.
+
+The generated token is sent to the user after a successful login.
+
+--------------------------------------------------
+
+Why Use JWT?
+------------
+After login, the client sends the token with every request.
+The server verifies the token to identify the authenticated user without asking them to log in again.
+
+
+
+
+---------------------------------------
+        Cookies Storage
+---------------------------------------
+
+What are Cookies?
+-----------------
+Cookies are small pieces of data stored in the user's browser by the server.
+
+They are commonly used to store:
+- Login tokens (JWT)
+- User preferences
+- Session information
+
+---------------------------------------
+
+How Cookies Work
+----------------
+
+1. User logs in.
+2. Server creates a JWT token.
+3. Server stores the token in a cookie.
+4. The browser automatically sends the cookie with every request to the server.
+5. The server verifies the token and identifies the user.
+
+---------------------------------------
+
+Why Use Cookies?
+----------------
+- Keeps the user logged in.
+- Automatically sends data with each request.
+- Makes authentication easier.
+
+---------------------------------------
+
+Example
+-------
+
+Server:
+
+res.cookie("token", token);
+
+Now the browser stores the token in a cookie.
+
+On future requests, the browser automatically sends this cookie to the server.
+
+======================================================================================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
