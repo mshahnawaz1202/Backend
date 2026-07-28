@@ -2285,7 +2285,269 @@ Summary
 JWT tokens are fast and stateless, but they must be stored securely, have an expiration time, and can be misused if stolen.
 
 
+===================================================================================================================================================================================
+# ---------------------
 
+# JEST
+
+# ---------------------
+
+JEST is a JavaScript testing framework.
+
+It is used to test JavaScript code and check whether it works as expected.
+
+We can use Jest to test:
+
+* JavaScript functions
+* Express APIs
+* React components
+* Node.js applications
+
+Jest compares the expected output with the actual output.
+
+If both are the same, the test passes.
+If they are different, the test fails.
+
+## Installation
+
+```bash
+npm i jest
+```
+
+## Example
+
+**math.js**
+
+```javascript
+function add(a, b) {
+    return a + b;
+}
+
+module.exports = add;
+```
+
+**math.test.js**
+
+```javascript
+const add = require("./math");
+
+test("adds 2 + 3 = 5", () => {
+    expect(add(2, 3)).toBe(5);
+});
+```
+
+Run the test:
+
+```bash
+npx jest
+```
+
+Output:
+
+```
+PASS
+✓ adds 2 + 3 = 5
+```
+
+---
+
+# ---------------------
+
+# Supertest
+
+# ---------------------
+
+Supertest is a library used to test Express APIs.
+
+It sends fake HTTP requests to our Express application without opening a browser or Postman.
+
+It can test:
+
+* GET request
+* POST request
+* PUT request
+* DELETE request
+* Status code
+* Response body
+* Headers
+
+## Installation
+
+```bash
+npm i supertest
+```
+
+## Example
+
+**app.js**
+
+```javascript
+const express = require("express");
+
+const app = express();
+
+app.get("/", (req, res) => {
+    res.status(200).json({
+        message: "Hello World"
+    });
+});
+
+module.exports = app;
+```
+
+**app.test.js**
+
+```javascript
+const request = require("supertest");
+const app = require("./app");
+
+test("GET / should return Hello World", async () => {
+    const response = await request(app).get("/");
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body.message).toBe("Hello World");
+});
+```
+
+Run:
+
+```bash
+npx jest
+```
+
+---
+
+# ---------------------
+
+# express-validator
+
+# ---------------------
+
+express-validator is a middleware used to validate user input before executing the route.
+
+It checks whether the request data is valid.
+
+For example:
+
+* Username should contain at least 3 characters.
+* Email should be valid.
+* Password should contain at least 6 characters.
+
+If validation fails, it returns validation errors.
+
+## Installation
+
+```bash
+npm i express-validator
+```
+
+## Example
+
+```javascript
+const express = require("express");
+const { body, validationResult } = require("express-validator");
+
+const app = express();
+
+app.use(express.json());
+
+app.post(
+    "/register",
+    body("username")
+        .isLength({ min: 3 })
+        .withMessage("Username must be at least 3 characters"),
+
+    body("email")
+        .isEmail()
+        .withMessage("Invalid Email"),
+
+    body("password")
+        .isLength({ min: 6 })
+        .withMessage("Password must be at least 6 characters"),
+
+    (req, res) => {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                errors: errors.array()
+            });
+        }
+
+        res.status(200).json({
+            message: "User Registered Successfully"
+        });
+    }
+);
+```
+
+### Valid Request
+
+```json
+{
+    "username": "shahnawaz",
+    "email": "test@gmail.com",
+    "password": "123456"
+}
+```
+
+Response:
+
+```json
+{
+    "message": "User Registered Successfully"
+}
+```
+
+### Invalid Request
+
+```json
+{
+    "username": "ab",
+    "email": "testgmail.com",
+    "password": "123"
+}
+```
+
+Response:
+
+```json
+{
+    "errors": [
+        {
+            "msg": "Username must be at least 3 characters"
+        },
+        {
+            "msg": "Invalid Email"
+        },
+        {
+            "msg": "Password must be at least 6 characters"
+        }
+    ]
+}
+```
+
+---
+
+# Summary
+
+| Package               | Purpose                                                           |
+| --------------------- | ----------------------------------------------------------------- |
+| **Jest**              | Testing framework for JavaScript.                                 |
+| **Supertest**         | Sends HTTP requests to test Express APIs.                         |
+| **express-validator** | Validates and sanitizes user input before processing the request. |
+
+### Install All Packages
+
+```bash
+npm i jest supertest express-validator
+```
+
+### Run Tests
+
+```bash
+npx jest
+```
 
 
 
