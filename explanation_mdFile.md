@@ -32,11 +32,13 @@ A server and a laptop are almost the same in terms of hardware.
 The difference is in how they are used.
 
 **Laptop/PC:**
+
 - Used by one person.
 - Runs applications like Chrome, VS Code, games, etc.
 - We can shut it down whenever we want.
 
 **Server:**
+
 - Programmed to provide services to many users.
 - Usually runs all the time (24/7).
 - Waits for users' requests.
@@ -70,6 +72,7 @@ The basic steps are:
 `package.json` is an important file in every Node.js project.
 
 It contains information about the project, such as:
+
 - Project name
 - Version
 - Scripts
@@ -85,6 +88,7 @@ Whenever someone downloads your project, npm reads this file and knows which pac
 `package-lock.json` is created automatically by npm.
 
 It stores:
+
 - The exact version of every installed package.
 - Which package depends on another package.
 
@@ -142,6 +146,7 @@ npm i express
 - `express` is a popular Node.js framework used to build web servers and APIs easily.
 
 **After installation:**
+
 - A `node_modules` folder is created.
 - `express` is added to `package.json` as a dependency.
 - `package-lock.json` is also created or updated.
@@ -300,12 +305,12 @@ Each application uses a different port number so the operating system knows wher
 
 **Examples:**
 
-| Application       | Port  |
-|-------------------|-------|
-| Chrome            | 443 (HTTPS) |
-| Node.js Server    | 3000  |
-| MySQL             | 3306  |
-| MongoDB           | 27017 |
+| Application    | Port        |
+| -------------- | ----------- |
+| Chrome         | 443 (HTTPS) |
+| Node.js Server | 3000        |
+| MySQL          | 3306        |
+| MongoDB        | 27017       |
 
 In development, port **3000** is commonly used for Express applications.
 
@@ -366,6 +371,7 @@ Think of an API like a waiter in a restaurant.
 You never go into the kitchen yourself.
 
 **Examples:**
+
 - Weather apps use a Weather API to get weather information.
 - Payment apps use APIs to process online payments.
 - Frontend applications use backend APIs to fetch or save data.
@@ -468,11 +474,13 @@ project/
 **Explanation:**
 
 **app.js**
+
 - Creates the Express application.
 - Defines routes.
 - Contains middleware and other application logic.
 
 **server.js**
+
 - Imports the Express application from `app.js`.
 - Starts the server using `app.listen()`.
 
@@ -497,9 +505,10 @@ app.listen(port, () => {
 It takes two arguments:
 
 1. **Port Number**
-   - The port on which the server listens for incoming requests.
 
+   - The port on which the server listens for incoming requests.
 2. **Callback Function**
+
    - Runs after the server starts successfully.
    - Usually used to display a success message.
 
@@ -677,6 +686,7 @@ Normally, whenever you change your code, you have to stop the server and start i
 Whenever it detects a change, it restarts the server automatically.
 
 **Benefits:**
+
 - Saves time.
 - No need to restart the server manually after every code change.
 - Makes development faster and more convenient.
@@ -717,6 +727,7 @@ MongoDB Atlas is the cloud version of MongoDB.
 Instead of installing MongoDB on your own computer, MongoDB Atlas stores your database online.
 
 **Advantages:**
+
 - Accessible from anywhere.
 - Automatic backups.
 - Easy to connect with applications.
@@ -753,6 +764,7 @@ When you create a free cluster on MongoDB Atlas, all your databases are stored i
 MongoDB Compass is the official graphical interface (GUI) for MongoDB.
 
 It allows you to:
+
 - View databases.
 - View collections.
 - Add documents.
@@ -813,15 +825,19 @@ project/
 **Explanation:**
 
 **db.js**
+
 - Connects the application to MongoDB.
 
 **models/**
+
 - Contains database models.
 
 **app.js**
+
 - Contains all routes and application logic.
 
 **server.js**
+
 - Starts the server and connects to the database.
 
 ---
@@ -1205,13 +1221,13 @@ Only the `description` field is updated.
 
 ## 17. Common Mongoose CRUD Methods
 
-| Operation   | Method               | Description                       | Return        |
-|-------------|----------------------|-----------------------------------|---------------|
-| Create      | `create()`           | Adds a new document.              | —             |
-| Read        | `find()`             | Returns all matching documents.   | Array         |
-| Read One    | `findOne()`          | Returns only one matching document.| Object or null|
-| Update      | `findOneAndUpdate()` | Updates one matching document.    | —             |
-| Delete      | `findOneAndDelete()` | Deletes one matching document.    | —             |
+| Operation | Method                 | Description                         | Return         |
+| --------- | ---------------------- | ----------------------------------- | -------------- |
+| Create    | `create()`           | Adds a new document.                | —             |
+| Read      | `find()`             | Returns all matching documents.     | Array          |
+| Read One  | `findOne()`          | Returns only one matching document. | Object or null |
+| Update    | `findOneAndUpdate()` | Updates one matching document.      | —             |
+| Delete    | `findOneAndDelete()` | Deletes one matching document.      | —             |
 
 ---
 
@@ -1334,6 +1350,7 @@ connectDB()
 - **Step 4:** Connect the application to MongoDB.
 
 After running the server, it will:
+
 - Start listening on port 3000.
 - Connect to the MongoDB database.
 
@@ -1976,6 +1993,7 @@ npm i axios
 Axios is a JavaScript library used to send HTTP requests to a backend server or API.
 
 It is commonly used to:
+
 - Fetch data (GET)
 - Send data (POST)
 - Update data (PATCH/PUT)
@@ -1998,6 +2016,7 @@ This sends a GET request to fetch all posts.
 `useNavigate` is a React Router hook used to navigate from one page to another programmatically.
 
 It is useful when navigation should happen after an action, such as:
+
 - Login
 - Form submission
 - Logout
@@ -2052,6 +2071,7 @@ Authentication means **verifying a user's identity before giving them access to 
 Validation checks whether the data entered by the user is in the correct format.
 
 **Examples:**
+
 - Is the email format correct?
 - Is the password at least 8 characters long?
 - Are all required fields filled?
@@ -2065,6 +2085,7 @@ Validation only checks the format of the input.
 Verification checks whether the provided information is valid or exists.
 
 **Examples:**
+
 - Does this email exist in the database?
 - Is the OTP correct?
 - Is the email verified?
@@ -2089,11 +2110,13 @@ Authorization determines what an authenticated user is allowed to do.
 **Example:**
 
 **Admin:**
+
 - Add users
 - Update users
 - Delete users
 
 **Normal User:**
+
 - View data
 - Update their own profile
 
@@ -2220,6 +2243,7 @@ const token = jwt.sign(
 ```
 
 **Explanation:**
+
 - `jwt.sign()` → Creates a JWT token.
 - `{ id: user._id }` → Payload (stores the user's ID).
 - `process.env.JWT_SECRET` → Secret key used to sign the token.
@@ -2242,6 +2266,7 @@ The server verifies the token to identify the authenticated user without asking 
 Cookies are small pieces of data stored in the user's browser by the server.
 
 They are commonly used to store:
+
 - Login tokens (JWT)
 - User preferences
 - Session information
@@ -2337,6 +2362,261 @@ If the token expires, the user must log in again or use a refresh token to get a
 Tokens should be stored securely (e.g., in HttpOnly cookies) to reduce the risk of theft.
 
 ---
+
+
+````md
+# JEST
+
+JEST is a JavaScript testing framework.
+
+It is used to test JavaScript code and check whether it works as expected.
+
+We can use Jest to test:
+
+- JavaScript functions
+- Express APIs
+- React components
+- Node.js applications
+
+Jest compares the expected output with the actual output.
+
+If both are the same, the test passes.  
+If they are different, the test fails.
+
+## Installation
+
+```bash
+npm i jest
+```
+
+## Example
+
+### math.js
+
+```javascript
+function add(a, b) {
+    return a + b;
+}
+
+module.exports = add;
+```
+
+### math.test.js
+
+```javascript
+const add = require("./math");
+
+test("adds 2 + 3 = 5", () => {
+    expect(add(2, 3)).toBe(5);
+});
+```
+
+### Run the Test
+
+```bash
+npx jest
+```
+
+### Output
+
+```text
+PASS
+✓ adds 2 + 3 = 5
+```
+
+---
+
+# Supertest
+
+Supertest is a library used to test Express APIs.
+
+It sends fake HTTP requests to our Express application without opening a browser or Postman.
+
+It can test:
+
+- GET request
+- POST request
+- PUT request
+- DELETE request
+- Status code
+- Response body
+- Headers
+
+## Installation
+
+```bash
+npm i supertest
+```
+
+## Example
+
+### app.js
+
+```javascript
+const express = require("express");
+
+const app = express();
+
+app.get("/", (req, res) => {
+    res.status(200).json({
+        message: "Hello World"
+    });
+});
+
+module.exports = app;
+```
+
+### app.test.js
+
+```javascript
+const request = require("supertest");
+const app = require("./app");
+
+test("GET / should return Hello World", async () => {
+    const response = await request(app).get("/");
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body.message).toBe("Hello World");
+});
+```
+
+### Run
+
+```bash
+npx jest
+```
+
+---
+
+# express-validator
+
+express-validator is a middleware used to validate user input before executing the route.
+
+It checks whether the request data is valid.
+
+For example:
+
+- Username should contain at least 3 characters.
+- Email should be valid.
+- Password should contain at least 6 characters.
+
+If validation fails, it returns validation errors.
+
+## Installation
+
+```bash
+npm i express-validator
+```
+
+## Example
+
+```javascript
+const express = require("express");
+const { body, validationResult } = require("express-validator");
+
+const app = express();
+
+app.use(express.json());
+
+app.post(
+    "/register",
+
+    body("username")
+        .isLength({ min: 3 })
+        .withMessage("Username must be at least 3 characters"),
+
+    body("email")
+        .isEmail()
+        .withMessage("Invalid Email"),
+
+    body("password")
+        .isLength({ min: 6 })
+        .withMessage("Password must be at least 6 characters"),
+
+    (req, res) => {
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            return res.status(400).json({
+                errors: errors.array()
+            });
+        }
+
+        res.status(200).json({
+            message: "User Registered Successfully"
+        });
+    }
+);
+```
+
+## Valid Request
+
+```json
+{
+    "username": "shahnawaz",
+    "email": "test@gmail.com",
+    "password": "123456"
+}
+```
+
+### Response
+
+```json
+{
+    "message": "User Registered Successfully"
+}
+```
+
+## Invalid Request
+
+```json
+{
+    "username": "ab",
+    "email": "testgmail.com",
+    "password": "123"
+}
+```
+
+### Response
+
+```json
+{
+    "errors": [
+        {
+            "msg": "Username must be at least 3 characters"
+        },
+        {
+            "msg": "Invalid Email"
+        },
+        {
+            "msg": "Password must be at least 6 characters"
+        }
+    ]
+}
+```
+
+---
+
+# Summary
+
+| Package | Purpose |
+|---------|---------|
+| **Jest** | Testing framework for JavaScript. |
+| **Supertest** | Sends HTTP requests to test Express APIs. |
+| **express-validator** | Validates and sanitizes user input before processing the request. |
+
+## Install All Packages
+
+```bash
+npm i jest supertest express-validator
+```
+
+## Run Tests
+
+```bash
+npx jest
+```
+````
 
 ## Summary
 
