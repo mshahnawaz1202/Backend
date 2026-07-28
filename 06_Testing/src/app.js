@@ -15,6 +15,10 @@ app.get('/',(req,res) =>{
 
 })
 
+app.post("/register",(req,res) => {
+    const{username,email,password} = req.body
+    
+})
 
 
 
